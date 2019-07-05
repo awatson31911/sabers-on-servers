@@ -6,7 +6,7 @@ const CharacterCard = ({ character }) => {
     <div>
 
       {
-        Object.keys(character).slice(8).map((attr) => {
+        Object.keys(character).slice(0, 8).map((attr) => {
           return (
             <p key={attr}>
               {`${attr}: ${character[attr]}`}

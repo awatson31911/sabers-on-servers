@@ -24,7 +24,7 @@ export default class App extends Component {
     const character = this.state.characters.filter((character) => {
       return character.name === event.target.value;
     })[0];
-    const selectedCharacter = await ajax.getCharInfo(character.url)
+    const selectedCharacter = await ajax.getCharInfo(character.url);
 
     if (selectedCharacter.films) {
       const films = await Promise.all(selectedCharacter.films.map(async (film) => {

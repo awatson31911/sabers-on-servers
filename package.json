@@ -1,5 +1,5 @@
 {
-  "name": "saber-on-servers",
+  "name": "sabers-on-servers",
   "version": "1.0.0",
   "description": "",
   "main": "server/index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/awatson31911/saber-on-servers.git"
+    "url": "git+https://github.com/awatson31911/sabers-on-servers.git"
   },
   "author": "Anthony Watson",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/awatson31911/saber-on-servers/issues"
+    "url": "https://github.com/awatson31911/sabers-on-servers/issues"
   },
-  "homepage": "https://github.com/awatson31911/saber-on-servers#readme",
+  "homepage": "https://github.com/awatson31911/sabers-on-servers#readme",
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
