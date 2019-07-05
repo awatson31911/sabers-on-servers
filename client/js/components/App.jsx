@@ -1,52 +1,71 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import ProjectCard from './ProjectsCard';
-import SkillsCard from './SkillsCard';
-import VideoBG from './VideoBG';
-import SideNavigation from './SideNavigation';
+import FilmsContainer from './FilmsContainer';
+import CharacterCard from './CharacterCard';
 
-
-import { projects, skills, roles } from '../utils/resumeObjects'
+import characters from '../utils/character';
+import ajax from '../utils/ajax';
 
 
 
 export default class App extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      projects,
-      skills,
-      roles,
-      selectedProject: projects[1],
-      selectedSkill: skills[2],
-      selectedRole: {}
-    }
+      characters: characters.characters,
+      selectedCharacter: {},
+      selectedCharacterName: 'Select a Character',
+      films: []
+    };
+
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
+  async handleSelect(event) {
+    const character = this.state.characters.filter((character) => {
+      return character.name === event.target.value;
+    })[0];
+    const selectedCharacter = await ajax.getCharInfo(character.url)
+
+    if (selectedCharacter.films) {
+      const films = await Promise.all(selectedCharacter.films.map(async (film) => {
+        const filmInfo = await ajax.getFilmInfo(film);
+        return filmInfo;
+      }));
+      this.setState({
+        selectedCharacter,
+        selectedCharacterName: selectedCharacter.name,
+        films
+      });
+    }
+  }
 
   render() {
     return (
       <div>
 
-        <Header />
-        
-        <SideNavigation />
-        
-        <section id="projects">
-          <ProjectCard projects={this.state.projects} selectedProject={this.state.selectedProject} />
-        </section>
+        <select
+          value={this.state.selectedCharacterName}
+          name={this.state.selectedCharacterName}
+          onChange={this.handleSelect}
+        >
+          {
+            this.state.characters.map((character) => {
+              return (
+                <option
+                  key={character.name}
+                  value={character.name}
+                >
+                  {character.name}
+                </option>
+              );
+            })
+          }
+        </select>
 
-        <section id="skills">
-          <SkillsCard skills={this.state.skills} selectedSkill={this.state.selectedSkill}/>
-        </section>
-
-        <section id="playground">
-          <VideoBG />
-        </section>
-
-
+        <CharacterCard character={this.state.selectedCharacter} />
+        <FilmsContainer films={this.state.films} />
 
       </div>
-    )
+    );
   }
 }
