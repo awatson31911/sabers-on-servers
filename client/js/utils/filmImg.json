@@ -1,20 +1,9 @@
 {
-  "characters": [
-    {
-      "name": "Luke Skywalker",
-      "url": "https://swapi.co/api/people/1/"
-    },
-    {
-      "name": "Darth Vader",
-      "url": "https://swapi.co/api/people/4/"
-    },
-    {
-      "name": "Obi-wan Kenobi",
-      "url": "https://swapi.co/api/people/unknown/"
-    }, 
-    {
-      "name": "R2-D2",
-      "url": "https://swapi.co/api/people/3/"
-    }
-  ]
+  "The Phantom Menace": "../../public/img/the-phantom-menace.jpg",
+  "Attack of the Clones": "../../public/img/attack-of-the-clones.jpg",
+  "Revenge of the Sith": "../../public/img/revenge-of-the-sith.jpg",
+  "A New Hope": "../../public/img/a-new-hope.jpg",
+  "The Empire Strikes Back": "../../public/img/the-empire-strikes-back.jpg",
+  "Return of the Jedi": "../../public/img/return-of-the-jedi.jpg",
+  "The Force Awakens": "../../public/img/the-force-awakens.jpg"
 }

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+
+import Header from './Header.jsx';
+import Logo from './Logo.jsx';
+import CharacterContainer from './CharacterContainer.jsx';
 import FilmsContainer from './FilmsContainer';
-import CharacterCard from './CharacterCard';
 
 import characters from '../utils/character';
 import ajax from '../utils/ajax';
@@ -13,57 +16,78 @@ export default class App extends Component {
     this.state = {
       characters: characters.characters,
       selectedCharacter: {},
-      selectedCharacterName: 'Select a Character',
-      films: []
+      films: [],
+      selectedFilm: {}
     };
 
-    this.handleSelect = this.handleSelect.bind(this);
+    this.handleClickCharacter = this.handleClickCharacter.bind(this);
+    this.handleClickFilm = this.handleClickFilm.bind(this);
   }
 
-  async handleSelect(event) {
+  async handleClickCharacter(event) {
     const character = this.state.characters.filter((character) => {
-      return character.name === event.target.value;
+      return character.name === event.target.getAttribute('name');
     })[0];
+
     const selectedCharacter = await ajax.getCharInfo(character.url);
 
     if (selectedCharacter.films) {
-      const films = await Promise.all(selectedCharacter.films.map(async (film) => {
-        const filmInfo = await ajax.getFilmInfo(film);
-        return filmInfo;
-      }));
+      const films = await Promise.all(selectedCharacter.films
+        .map(async (film) => {
+          const filmInfo = await ajax.getFilmInfo(film);
+          return filmInfo;
+        })
+      );
+
+      console.log(films)
+      films.sort((a, b) => {
+        console.log(a.episode_id, b.episode_id)
+        return a.episode_id > b.episode_id;
+      });
+      console.log(films)
+
       this.setState({
         selectedCharacter,
         selectedCharacterName: selectedCharacter.name,
-        films
+        films,
+        selectedFilm: films[0]
       });
     }
   }
 
+  handleClickFilm(event) {
+    const selectedFilm = this.state.films.filter( film => {
+      return film.title === event.target.getAttribute('name');
+    })[0];
+    console.log(event.target.getAttribute('name'), selectedFilm)
+
+    this.setState({ selectedFilm });
+  }
+
   render() {
     return (
+
       <div>
 
-        <select
-          value={this.state.selectedCharacterName}
-          name={this.state.selectedCharacterName}
-          onChange={this.handleSelect}
-        >
-          {
-            this.state.characters.map((character) => {
-              return (
-                <option
-                  key={character.name}
-                  value={character.name}
-                >
-                  {character.name}
-                </option>
-              );
-            })
-          }
-        </select>
+        <Header />
 
-        <CharacterCard character={this.state.selectedCharacter} />
-        <FilmsContainer films={this.state.films} />
+        <Logo />
+
+        <CharacterContainer
+          characters={this.state.characters}
+          character={this.state.selectedCharacter}
+          handleClick={this.handleClickCharacter}
+        />
+
+        <p className=''>
+          Appears In:
+        </p>
+
+        <FilmsContainer
+          films={this.state.films}
+          film={this.state.selectedFilm}
+          handleClick={this.handleClickFilm}
+        />
 
       </div>
     );

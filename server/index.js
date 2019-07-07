@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
 const express = require('express');
 const app = express(); // Creates an instance of express application
 const path = require('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 
 /* ------------------------------ Middleware ------------------------------------------- */
 
 /* --------------- Logging ------------------- */
-app.use(morgan('dev')); 
+app.use(morgan('dev'));
 
 /* --------------- Parsing ------------------- */
 app.use(bodyParser.json());
@@ -26,26 +26,26 @@ app.use(express.static(path.join(__dirname, '..', 'client'))); //serves css/js f
 
 
 /* ------------------------------ Default index.html ------------------------------------------- */
-app.get('*', function (req, res) {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/public/views/index.html'));
 
 });
 
 /* ----------------------------------- Error Handling ------------------------------------------- */
-app.use(function(err, req ,res, next) {
+app.use((err, req, res) => {
   console.error(err);
   console.error(err.stack);
   res.status(err.status || 500).send(err.message || 'Internal server error.');
-})
+});
 
 /* ------------------------------ ~ Start Server ~ ------------------------------------------- */
-app.listen(port, function() {
-  console.log("Knock, Knock");
-  setTimeout(function() {
-    console.log("Who's there?")
+app.listen(port, () => {
+  console.log('Knock, Knock');
+  setTimeout( () => {
+    console.log('Who\'s there?');
   }, 1000);
-  setTimeout(function() {
+  setTimeout( () => {
     console.log(`...We're
-    listening (port:3000).... `)
+    listening (port:3000).... `);
   }, 3000);
-})
+});

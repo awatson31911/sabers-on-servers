@@ -4,8 +4,7 @@ export const dateFormatter = (date) => {
   const day = dateParts[1];
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const year = dateParts[0];
-  
-  let d = new Date(date);
+  const d = new Date(date);
   
   return `${days[d.getDay()]}, ${months[d.getMonth()]} ${day} ${year}`;
 };

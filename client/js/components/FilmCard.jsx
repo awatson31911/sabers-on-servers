@@ -3,27 +3,44 @@ import PropTypes from 'prop-types';
 
 import { dateFormatter } from '../utils/helperFuncs';
 
-const FilmCard = ({ film }) => {
+const FilmCard = ({ film, handleClick }) => {
   return (
     <div>
-      <h2>
-        Title: {film.title}
-      </h2>
-      <p>
-        Episode #{film.episode_id}
-      </p>
-      <p>
-        Release Date: {dateFormatter(film.release_date)}
-      </p>
-      {/* <img>
-      Movie Poster Will Go Here
-      </img> */}
+
+      <div name={film.title} onClick={handleClick}>
+        <br />
+
+        <h3 className='m-0 font-weight-bold'>
+          {film.title}
+        </h3>
+
+        <text className='m-0'>
+          Episode #
+        </text>
+
+        <text className='m-0'>
+          {film.episode_id}
+        </text>
+
+        <br />
+
+        <text className='m-0 font-weight-bold'>
+          Release Date:{' '}
+        </text>
+
+        <text className='m-0 font-weight-lighter'>
+          {dateFormatter(film.release_date)}
+        </text>
+
+      </div>
+
     </div>
   );
 };
 
 FilmCard.propTypes = {
-  film: PropTypes.object.isRequired
+  film: PropTypes.object.isRequired,
+  handleClick: PropTypes.func.isRequired
 };
 
 export default FilmCard;
