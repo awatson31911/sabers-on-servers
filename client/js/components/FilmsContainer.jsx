@@ -6,12 +6,13 @@ import FilmCard from './FilmCard';
 
 import filmImg from '../utils/filmImg';
 
-const Films = ({ film, films, handleClick }) => {
+
+const Films = ({ film, films, handleClick, ...props }) => {
   return (
 
     <div>
 
-      <div className="row mx-auto w-75">
+      <div className="row mx-auto mt-4 w-75">
 
         <div className="col-6">
           <img
@@ -31,6 +32,7 @@ const Films = ({ film, films, handleClick }) => {
                 <FilmCard
                   key={film.episode_id}
                   film={film}
+                  hasError={props[`${film.title}-hasError`]}
                   handleClick={handleClick}
                 />
               );

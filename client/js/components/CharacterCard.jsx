@@ -3,8 +3,15 @@ import PropTypes from 'prop-types';
 
 import characterImg from '../utils/characterImg';
 
-const CharacterCard = ({ character }) => {
+const CharacterCard = ({ character, hasError }) => {
 
+  if (hasError) {
+    return (
+      <p4 className='text-danger font-weight-bold'>
+        Oh No! Something went wrong... Try another Character!
+      </p4>
+    );
+  }
   return (
     <div className='container'>
 
@@ -44,7 +51,8 @@ const CharacterCard = ({ character }) => {
 };
 
 CharacterCard.propTypes = {
-  character: PropTypes.object.isRequired
+  character: PropTypes.object.isRequired,
+  hasError: PropTypes.bool.isRequired
 };
 
 export default CharacterCard;

@@ -9,7 +9,6 @@ import characters from '../utils/character';
 import ajax from '../utils/ajax';
 
 
-
 export default class App extends Component {
   constructor() {
     super();
@@ -30,53 +29,53 @@ export default class App extends Component {
       return character.name === event.target.getAttribute('name');
     })[0];
 
-    const selectedCharacter = await ajax.getCharInfo(character.url);
+    const selectedCharacter = await ajax.getCharInfo(character.url).catch(error => {
+      console.error(error);
+      this.setState({ hasError: true, films: [], selectedFilm: {} });
+    });
 
-    if (selectedCharacter.films) {
-      const films = await Promise.all(selectedCharacter.films
-        .map(async (film) => {
-          const filmInfo = await ajax.getFilmInfo(film);
-          return filmInfo;
-        })
-      );
+    const films = selectedCharacter && await Promise.all(selectedCharacter.films
+      .map(async (film) => {
+        const filmInfo = await ajax.getFilmInfo(film).catch(error => {
+          console.error(error);
+          this.setState({ [`${film.title}-hasError`]: true });
+        });
 
-      films.sort((a, b) => {
-        console.log(a.episode_id, b.episode_id);
-        return a.episode_id > b.episode_id;
-      });
-      console.log(films);
+        if (filmInfo) {
+          this.setState({ [`${film.title}-hasError`]: false });
+        }
+        return filmInfo;
+      })
+    );
 
+    // films.sort((a, b) => {
+    //   console.log(a.episode_id, b.episode_id);
+    //   return a.episode_id > b.episode_id;
+    // });
+    // console.log(films);
+
+    if (selectedCharacter) {
+      this.setState({ selectedCharacter, hasError: false });
+    }
+
+    if (films) {
       this.setState({
-        selectedCharacter,
-        selectedCharacterName: selectedCharacter.name,
         films,
         selectedFilm: films[0]
       });
     }
+
   }
 
   handleClickFilm(event) {
-    const selectedFilm = this.state.films.filter( film => {
+    const selectedFilm = this.state.films.filter(film => {
       return film.title === event.target.getAttribute('name');
     })[0];
 
     this.setState({ selectedFilm });
   }
-  
-  componentDidCatch (error, info) {
-    
-    this.setState({
-      hasError: true
-    });
-  }
 
   render() {
-
-    if (this.state.hasError) {
-      return (
-        <h4>Something Went Wrong</h4>
-      );
-    }
 
     return (
 
@@ -90,9 +89,8 @@ export default class App extends Component {
           characters={this.state.characters}
           character={this.state.selectedCharacter}
           handleClick={this.handleClickCharacter}
+          hasError={this.state.hasError}
         />
-        
-        <hr />
 
         <FilmsContainer
           films={this.state.films}

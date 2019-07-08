@@ -1,21 +1,18 @@
 export default {
-  async getCharInfo (characterUrl) {
-    try {
-      const response = await fetch(characterUrl);
-      const responseJson = await response.json();
-      return responseJson;
-    } catch (error) {
-      console.error(error);
+  async getCharInfo(characterUrl) {
+    const response = await fetch(characterUrl);
+    if (response.ok) {
+      return response.json();
     }
+    throw new Error(`Something went wrong. There was a ${response.status} Error.`);
+
   },
 
-  async getFilmInfo (filmUrl) {
-    try {
-      const response = await fetch(filmUrl);
-      const responseJson = await response.json();
-      return responseJson;
-    } catch (error) {
-      console.error(error);
+  async getFilmInfo(filmUrl) {
+    const response = await fetch(filmUrl);
+    if (response.ok) {
+      return response.json();
     }
+    throw new Error(`Something went wrong. There was a ${response.status} Error.`);
   }
 };

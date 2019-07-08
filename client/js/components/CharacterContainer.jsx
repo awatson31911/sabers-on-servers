@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import CharacterCard from './CharacterCard';
 
-const CharacterContainer = ({ characters, character, handleClick }) => {
+
+const CharacterContainer = ({ characters, character, handleClick, hasError }) => {
 
   return (
     <div className='container'>
@@ -35,7 +36,7 @@ const CharacterContainer = ({ characters, character, handleClick }) => {
         }
       </div>
 
-      <CharacterCard character={character} />
+      <CharacterCard character={character} hasError={hasError} />
 
     </div>
   );
@@ -44,7 +45,8 @@ const CharacterContainer = ({ characters, character, handleClick }) => {
 CharacterContainer.propTypes = {
   characters: PropTypes.array.isRequired,
   character: PropTypes.object.isRequired,
-  handleClick: PropTypes.func.isRequired
+  handleClick: PropTypes.func.isRequired,
+  hasError: PropTypes.bool.isRequired
 };
 
 export default CharacterContainer;
