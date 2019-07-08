@@ -11,13 +11,20 @@ const Films = ({ film, films, handleClick }) => {
 
     <div>
 
-      <div className="row m-auto">
+      <div className="row mx-auto w-75">
 
         <div className="col-6">
-          <img src={film && filmImg[film.title]} alt={film && film.title} />
+          <img
+            className='img-fluid rounded'
+            src={film && filmImg[film.title]}
+            alt={film && film.title} />
         </div>
 
-        <div className="col-6">
+        <div className="col-6 max-h-md overflow-auto">
+          <p className=''>
+            Appears In:
+          </p>
+
           {
             films.map((film) => {
               return (

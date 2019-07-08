@@ -14,6 +14,7 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
+      hasError: false,
       characters: characters.characters,
       selectedCharacter: {},
       films: [],
@@ -39,12 +40,11 @@ export default class App extends Component {
         })
       );
 
-      console.log(films)
       films.sort((a, b) => {
-        console.log(a.episode_id, b.episode_id)
+        console.log(a.episode_id, b.episode_id);
         return a.episode_id > b.episode_id;
       });
-      console.log(films)
+      console.log(films);
 
       this.setState({
         selectedCharacter,
@@ -59,12 +59,25 @@ export default class App extends Component {
     const selectedFilm = this.state.films.filter( film => {
       return film.title === event.target.getAttribute('name');
     })[0];
-    console.log(event.target.getAttribute('name'), selectedFilm)
 
     this.setState({ selectedFilm });
   }
+  
+  componentDidCatch (error, info) {
+    
+    this.setState({
+      hasError: true
+    });
+  }
 
   render() {
+
+    if (this.state.hasError) {
+      return (
+        <h4>Something Went Wrong</h4>
+      );
+    }
+
     return (
 
       <div>
@@ -78,10 +91,8 @@ export default class App extends Component {
           character={this.state.selectedCharacter}
           handleClick={this.handleClickCharacter}
         />
-
-        <p className=''>
-          Appears In:
-        </p>
+        
+        <hr />
 
         <FilmsContainer
           films={this.state.films}

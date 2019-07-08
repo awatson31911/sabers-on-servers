@@ -8,10 +8,10 @@ const CharacterCard = ({ character }) => {
   return (
     <div className='container'>
 
-      <div className="row mx-auto w-50">
+      <div className="row mx-auto w-50 max-h-sm">
 
         <div className="col-6 p-0 mr-4">
-          <img className='img-fluid' src={characterImg[character.name]} alt={character.name} />
+          <img className='img-fluid rounded' src={characterImg[character.name]} alt={character.name} />
         </div>
 
         <div className="col px-0 py-4">
