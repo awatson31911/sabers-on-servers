@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import Header from './Header.jsx';
-import Logo from './Logo.jsx';
 import CharacterContainer from './CharacterContainer.jsx';
 import FilmsContainer from './FilmsContainer';
 
@@ -88,8 +87,6 @@ export default class App extends Component {
 
         <Header />
 
-        <Logo />
-
         <CharacterContainer
           characters={this.state.characters}
           character={this.state.selectedCharacter}
@@ -98,7 +95,7 @@ export default class App extends Component {
         />
 
         {
-          this.state.films &&
+          this.state.films.length > 0 &&
           <FilmsContainer
             films={this.state.films}
             film={this.state.selectedFilm}

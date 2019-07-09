@@ -7,7 +7,7 @@ import FilmCard from './FilmCard';
 import filmImg from '../utils/filmImg';
 
 
-const Films = ({ film, films, handleClick, ...props }) => {
+const Films = ({ film, films, handleClick, ...props}) => {
 
   return (
 

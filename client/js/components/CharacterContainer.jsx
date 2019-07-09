@@ -38,7 +38,7 @@ const CharacterContainer = ({ characters, character, handleClick, hasError }) =>
       </div>
 
       {
-        character &&
+        character.hasOwnProperty('name') &&
         <CharacterCard character={character} hasError={hasError} />
       }
 
