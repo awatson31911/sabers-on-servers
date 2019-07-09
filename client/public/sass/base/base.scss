@@ -4,19 +4,9 @@
   box-sizing: border-box;
 }
 html{
-  font-size: 62.5%;
   color: $color-black;
 }
 
 body {
   margin-top: 4rem;
-}
-
-section {
-  height: 100vh;
-
-  &:not(:last-child) {
-    padding-top: 15rem;
-    padding-left: 10rem;
-  }
 }

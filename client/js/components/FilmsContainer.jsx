@@ -8,11 +8,20 @@ import filmImg from '../utils/filmImg';
 
 
 const Films = ({ film, films, handleClick, ...props }) => {
+
   return (
 
-    <div>
+    <div className='container mt-4'>
 
-      <div className="row mx-auto mt-4 w-75">
+      <div className="row">
+
+        <p className='mx-auto text-center'>
+          Appears In:
+        </p>
+
+      </div>
+
+      <div className="row mx-auto w-75">
 
         <div className="col-6">
           <img
@@ -22,9 +31,6 @@ const Films = ({ film, films, handleClick, ...props }) => {
         </div>
 
         <div className="col-6 max-h-md overflow-auto">
-          <p className=''>
-            Appears In:
-          </p>
 
           {
             films.map((film) => {
@@ -44,6 +50,7 @@ const Films = ({ film, films, handleClick, ...props }) => {
 
     </div>
   );
+
 };
 
 Films.propTypes = {

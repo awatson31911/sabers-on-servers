@@ -22,21 +22,25 @@ const CharacterContainer = ({ characters, character, handleClick, hasError }) =>
           characters.map((character) => {
             return (
 
-              <div
+              <button
                 key={character.name}
-                className='col mb-3 px-0 text-center character-name'
+                type='button'
+                className='col px-0 btn btn-outline-secondary'
                 name={character.name}
                 onClick={handleClick}
                 style={{ cursor: 'pointer' }}
               >
                 {character.name}
-              </div>
+              </button>
             );
           })
         }
       </div>
 
-      <CharacterCard character={character} hasError={hasError} />
+      {
+        character &&
+        <CharacterCard character={character} hasError={hasError} />
+      }
 
     </div>
   );

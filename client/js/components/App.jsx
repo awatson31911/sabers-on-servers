@@ -25,6 +25,8 @@ export default class App extends Component {
   }
 
   async handleClickCharacter(event) {
+    event.preventDefault();
+
     const character = this.state.characters.filter((character) => {
       return character.name === event.target.getAttribute('name');
     })[0];
@@ -68,6 +70,9 @@ export default class App extends Component {
   }
 
   handleClickFilm(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
     const selectedFilm = this.state.films.filter(film => {
       return film.title === event.target.getAttribute('name');
     })[0];
@@ -92,11 +97,14 @@ export default class App extends Component {
           hasError={this.state.hasError}
         />
 
-        <FilmsContainer
-          films={this.state.films}
-          film={this.state.selectedFilm}
-          handleClick={this.handleClickFilm}
-        />
+        {
+          this.state.films &&
+          <FilmsContainer
+            films={this.state.films}
+            film={this.state.selectedFilm}
+            handleClick={this.handleClickFilm}
+          />
+        }
 
       </div>
     );

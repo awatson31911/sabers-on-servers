@@ -12,40 +12,38 @@ const FilmCard = ({ film, handleClick, hasError }) => {
   }
 
   return (
-    <div>
 
-      <div
-        className='mt-3 bl- rounded-right pl-2'
-        name={film.title}
-        onClick={handleClick}
-        style={{ cursor: 'pointer', backgroundColor: '$color-black' }}
-      >
+    <button
+      className='mt-3 btn btn-outline-dark rounded-right px-2'
+      name={film.title}
+      onClick={handleClick}
+      type='button'
+    >
 
-        <h3 className='m-0 text-light font-weight-bold'>
-          {film.title}
-        </h3>
+      <h3 className='m-0 font-weight-bold'>
+        {film.title}
+      </h3>
 
-        <text className='m-0 text-secondary'>
-          Episode #
-        </text>
+      <text className='m-0'>
+        Episode #
+      </text>
 
-        <text className='m-0 text-secondary'>
-          {film.episode_id}
-        </text>
+      <text className='m-0'>
+        {film.episode_id}
+      </text>
 
-        <br />
+      <br />
 
-        <text className='m-0 text-light font-weight-bold'>
-          Release Date:{' '}
-        </text>
+      <text className='m-0 font-weight-bold'>
+        Release Date:{' '}
+      </text>
 
-        <text className='m-0 text-light font-weight-lighter'>
-          {dateFormatter(film.release_date)}
-        </text>
+      <text className='m-0 font-weight-lighter'>
+        {dateFormatter(film.release_date)}
+      </text>
 
-      </div>
+    </button>
 
-    </div>
   );
 };
 

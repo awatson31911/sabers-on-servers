@@ -12,36 +12,34 @@ const CharacterCard = ({ character, hasError }) => {
       </p4>
     );
   }
+
   return (
+
     <div className='container'>
 
-      <div className="row mx-auto w-50 max-h-sm">
+      <div className="row mx-auto mt-3 w-50 max-h-sm shadow">
 
-        <div className="col-6 p-0 mr-4">
+        <div className="col-6 p-0 mr-4 mh-100">
           <img className='img-fluid rounded' src={characterImg[character.name]} alt={character.name} />
         </div>
 
-        <div className="col px-0 py-4">
+        <div className="col px-0 mh-100">
+          {
+            Object.keys(character).slice(0, 8).map((attr) => {
+              return (
+                <div key={attr}>
 
-          <div className="vertial-align">
-            {
-              Object.keys(character).slice(0, 8).map((attr) => {
-                return (
-                  <div key={attr}>
+                  <text className='m-0 text-uppercase font-weight-bold'>
+                    {`${attr}: `}
+                  </text>
+                  <text className='m-0 font-weight-light'>
+                    {character[attr]}
+                  </text>
 
-                    <text className='m-0 text-uppercase font-weight-bold'>
-                      {`${attr}: `}
-                    </text>
-                    <text className='m-0 font-weight-light'>
-                      {character[attr]}
-                    </text>
-
-                  </div>
-                );
-              })
-            }
-          </div>
-
+                </div>
+              );
+            })
+          }
         </div>
 
       </div>
