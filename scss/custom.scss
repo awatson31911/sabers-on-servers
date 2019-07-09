@@ -1,0 +1,60 @@
+/* ----------------- Variables ----------------- */
+//COLORS
+$color-white: rgb(247, 247, 247);
+$color-grey: rgb(147, 147, 147);
+$color-black: rgb(79, 79, 79);
+
+$enable-responsive-font-sizes: true;
+
+/* ----------------- Components ----------------- */
+header {
+  color: $color-black;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-left-style: solid;
+  border-bottom-style: solid;
+  font-size: 1.8rem;
+  z-index: 1;
+}
+
+/* ----------------- Base ----------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html{
+  color: $color-black;
+}
+
+body {
+  margin-top: 4rem;
+}
+
+button > * {
+  pointer-events: none;
+}
+
+/* ----------------- Typography ----------------- */
+// font-family: 'Karla', sans-serif;
+// font-family: 'Josefin Sans', sans-serif;
+// font-family: 'IBM Plex Mono', monospace;
+// font-family: 'Acme', sans-serif;
+
+body {
+  font-family: 'Karla', sans-serif;
+  color: $color-black;
+}
+
+/* ----------------- Utilities ----------------- */
+.max-h-lg {
+  max-height: 78rem;
+}
+.max-h-md {
+  max-height: 60rem;
+}
+.max-h-sm {
+  max-height: 20rem;
+}

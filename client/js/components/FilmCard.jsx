@@ -14,7 +14,7 @@ const FilmCard = ({ film, handleClick, hasError }) => {
   return (
 
     <button
-      className='mt-3 btn btn-outline-dark rounded-right px-2'
+      className='mb-3 btn btn-outline-dark px-2'
       name={film.title}
       onClick={handleClick}
       type='button'

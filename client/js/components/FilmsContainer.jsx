@@ -21,16 +21,16 @@ const Films = ({ film, films, handleClick, ...props}) => {
 
       </div>
 
-      <div className="row mx-auto w-75">
+      <div className="row mx-auto max-h-md w-75">
 
-        <div className="col-6">
+        <div className="col-6 mh-100">
           <img
             className='img-fluid rounded'
             src={film && filmImg[film.title]}
             alt={film && film.title} />
         </div>
 
-        <div className="col-6 max-h-md overflow-auto">
+        <div className="col-6 mh-100 overflow-auto">
 
           {
             films.map((film) => {

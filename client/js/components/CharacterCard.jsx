@@ -17,7 +17,7 @@ const CharacterCard = ({ character, hasError }) => {
 
     <div className='container'>
 
-      <div className="row mx-auto mt-3 w-50 max-h-sm shadow">
+      <div className="row mx-auto mt-3 w-50 max-h-sm shadow border rounded">
 
         <div className="col-6 p-0 mr-4 mh-100">
           <img className='img-fluid rounded' src={characterImg[character.name]} alt={character.name} />
