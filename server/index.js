@@ -46,6 +46,6 @@ app.listen(port, () => {
   }, 1000);
   setTimeout( () => {
     console.log(`...We're
-    listening (port:3000).... `);
+    listening (port:${port}).... `);
   }, 3000);
 });
