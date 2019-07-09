@@ -4,6 +4,8 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
+    "dev": "webpack -w --mode development & nodemon --watch server -e js,html",
+    "heroku-postbuild": "webpack -p",
     "start": "webpack -w & nodemon --watch server -e js,html"
   },
   "repository": {
