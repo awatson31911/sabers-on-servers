@@ -1,5 +1,5 @@
 # Sabers on Servers
-Sabers on Servers is a mobile-ready, interactive web application that uses the Star Wars API (https://swapi.co/api/) to display popular character and the films they appear in. 
+Sabers on Servers is a mobile-ready, interactive web application that uses the Star Wars API (https://swapi.co/api/) to display popular characters and the films they appear in. 
 
 ## Technologies/Services Used
 - React
