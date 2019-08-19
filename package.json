@@ -1,7 +1,10 @@
 {
   "name": "sabers-on-servers",
   "version": "1.0.0",
-  "description": "",
+  "engines": {
+    "node": "11.15.0"
+  },
+  "description": "Sabers on Servers is a mobile-ready, interactive web application that uses the Star Wars API (https://swapi.co/api/) to display popular characters and the films they appear in.",
   "main": "server/index.js",
   "scripts": {
     "dev": "webpack -w --mode development & nodemon --watch server -e js,html",
